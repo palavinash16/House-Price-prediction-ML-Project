@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Price Prediction System | Machine Learning Dashboard</title>
+  <meta name="description" content="Production-grade Machine Learning application for predicting real estate housing prices with high precision." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand">
+        <div class="brand-logo"><i class="fa-solid fa-house-chimney"></i></div>
+        <div>
+          <div class="brand-title">Housing ML Studio</div>
+          <div class="brand-subtitle">Production Predictive Analytics System</div>
+        </div>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#calculator" class="nav-link active">Price Predictor</a></li>
+        <li><a href="#benchmarks" class="nav-link">Model Benchmarks</a></li>
+        <li><a href="#importance" class="nav-link">Feature Importance</a></li>
+        <li><a href="#dataset" class="nav-link">Data Explorer</a></li>
+        <li><a href="#api" class="nav-link">API Docs</a></li>
+      </ul>
+
+      <div class="badge-status">
+        <span class="dot-pulse"></span>
+        <span id="api-status-text">ML Engine Active</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="hero-tag">
+        <i class="fa-solid fa-sparkles"></i> Production-Ready Predictive Machine Learning Pipeline
+      </div>
+      <h1 class="hero-title">Predicting House Prices with Precision ML</h1>
+      <p class="hero-subtitle">
+        An end-to-end Machine Learning web application powered by standardized feature engineering, cross-validated regularized regression, and real-time sensitivity analysis.
+      </p>
+
+      <!-- Key Performance Metrics Header -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span>BEST MODEL R² SCORE</span>
+            <i class="fa-solid fa-chart-line text-cyan"></i>
+          </div>
+          <div class="metric-value" id="top-r2-val">0.8871</div>
+          <div class="metric-desc">Lasso Regularized Regression</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span>TEST RMSE</span>
+            <i class="fa-solid fa-bullseye text-cyan"></i>
+          </div>
+          <div class="metric-value" id="top-rmse-val">$28,389</div>
+          <div class="metric-desc">Low Variance Prediction Error</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span>TEST MAE</span>
+            <i class="fa-solid fa-scale-balanced text-cyan"></i>
+          </div>
+          <div class="metric-value" id="top-mae-val">$22,049</div>
+          <div class="metric-desc">Average Absolute Dollar Error</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span>TRAINED SAMPLES</span>
+            <i class="fa-solid fa-database text-cyan"></i>
+          </div>
+          <div class="metric-value">1,500</div>
+          <div class="metric-desc">Property Records Evaluated</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Price Calculator Section -->
+    <section id="calculator" class="calculator-grid">
+      <!-- Input Controls Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fa-solid fa-sliders"></i> Property Parameters
+          </h2>
+          <span style="font-size: 13px; color: var(--text-secondary);">Adjust sliders to simulate valuation</span>
+        </div>
+
+        <form id="price-form" class="form-grid">
+          <!-- Area Square Feet -->
+          <div class="form-group full-width">
+            <div class="label-wrapper">
+              <label for="input-area"><i class="fa-solid fa-ruler-combined"></i> Living Area (Sq Ft)</label>
+              <span class="label-val" id="val-area">2,250 sq ft</span>
+            </div>
+            <input type="range" id="input-area" min="600" max="4000" step="10" value="2250" />
+          </div>
+
+          <!-- Bedrooms -->
+          <div class="form-group">
+            <div class="label-wrapper">
+              <label for="input-bedrooms"><i class="fa-solid fa-bed"></i> Bedrooms</label>
+              <span class="label-val" id="val-bedrooms">3</span>
+            </div>
+            <input type="range" id="input-bedrooms" min="1" max="6" step="1" value="3" />
+          </div>
+
+          <!-- Bathrooms -->
+          <div class="form-group">
+            <div class="label-wrapper">
+              <label for="input-bathrooms"><i class="fa-solid fa-bath"></i> Bathrooms</label>
+              <span class="label-val" id="val-bathrooms">2</span>
+            </div>
+            <input type="range" id="input-bathrooms" min="1" max="5" step="1" value="2" />
+          </div>
+
+          <!-- Stories -->
+          <div class="form-group">
+            <div class="label-wrapper">
+              <label for="input-stories"><i class="fa-solid fa-layer-group"></i> Stories</label>
+              <span class="label-val" id="val-stories">2</span>
+            </div>
+            <input type="range" id="input-stories" min="1" max="4" step="1" value="2" />
+          </div>
+
+          <!-- House Age -->
+          <div class="form-group">
+            <div class="label-wrapper">
+              <label for="input-age"><i class="fa-solid fa-clock-rotate-left"></i> Property Age</label>
+              <span class="label-val" id="val-age">8 Years</span>
+            </div>
+            <input type="range" id="input-age" min="0" max="60" step="1" value="8" />
+          </div>
+
+          <!-- Garage Capacity -->
+          <div class="form-group">
+            <div class="label-wrapper">
+              <label for="input-garage"><i class="fa-solid fa-car"></i> Garage Capacity</label>
+              <span class="label-val" id="val-garage">2 Cars</span>
+            </div>
+            <input type="range" id="input-garage" min="0" max="4" step="1" value="2" />
+          </div>
+
+          <!-- Neighborhood -->
+          <div class="form-group">
+            <label for="input-neighborhood" class="label-wrapper"><i class="fa-solid fa-location-dot"></i> Neighborhood</label>
+            <select id="input-neighborhood" class="form-select">
+              <option value="Suburbs" selected>Suburbs</option>
+              <option value="Downtown">Downtown</option>
+              <option value="Waterfront">Waterfront</option>
+              <option value="Highland">Highland</option>
+              <option value="Oldtown">Oldtown</option>
+            </select>
+          </div>
+
+          <!-- Furnishing -->
+          <div class="form-group">
+            <label for="input-furnishing" class="label-wrapper"><i class="fa-solid fa-couch"></i> Furnishing Status</label>
+            <select id="input-furnishing" class="form-select">
+              <option value="Furnished">Furnished</option>
+              <option value="Semi-Furnished" selected>Semi-Furnished</option>
+              <option value="Unfurnished">Unfurnished</option>
+            </select>
+          </div>
+
+          <!-- Has Pool -->
+          <div class="form-group">
+            <label for="input-pool" class="label-wrapper"><i class="fa-solid fa-water-ladder"></i> Swimming Pool</label>
+            <select id="input-pool" class="form-select">
+              <option value="No" selected>No Pool</option>
+              <option value="Yes">Private Pool</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <!-- Real-Time Prediction Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fa-solid fa-calculator"></i> Valuation Output
+          </h2>
+          <span style="font-size: 13px; color: var(--accent-cyan);"><i class="fa-solid fa-bolt"></i> Real-Time Inference</span>
+        </div>
+
+        <div class="prediction-box">
+          <div class="prediction-label">Estimated Market Value</div>
+          <div class="prediction-price" id="predicted-price-text">$589,528.77</div>
+          <div class="prediction-range" id="confidence-range-text">
+            95% Confidence Range: $533,885 - $645,172
+          </div>
+          <div class="confidence-badge">
+            <i class="fa-solid fa-circle-check"></i> High Precision ML Estimation
+          </div>
+        </div>
+
+        <div class="breakdown-title">
+          <i class="fa-solid fa-magnifying-glass-chart"></i> Valuation Driver Sensitivity Breakdown
+        </div>
+        <div class="breakdown-list" id="impact-breakdown-list">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Model Comparison Section -->
+    <section id="benchmarks" class="section">
+      <h2 class="section-title"><i class="fa-solid fa-microchip text-cyan"></i> Machine Learning Model Benchmarks</h2>
+      <p class="section-desc">Comparison of baseline linear models and ensemble tree architectures evaluated on 20% holdout test set.</p>
+
+      <div class="comparison-grid" id="comparison-cards-container">
+        <!-- Dynamically populated by app.js -->
+      </div>
+    </section>
+
+    <!-- Feature Importance Ranking Section -->
+    <section id="importance" class="section">
+      <div class="chart-container">
+        <h2 class="section-title"><i class="fa-solid fa-chart-simple text-cyan"></i> Feature Importance & Coefficient Rankings</h2>
+        <p class="section-desc">Relative dollar magnitude impact of individual property attributes on estimated house value.</p>
+        
+        <div class="bar-chart" id="feature-importance-bars">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Dataset Explorer Section -->
+    <section id="dataset" class="section">
+      <h2 class="section-title"><i class="fa-solid fa-table text-cyan"></i> Dataset Sample Explorer</h2>
+      <p class="section-desc">Sample records from 1,500 property dataset used for model training and evaluation.</p>
+
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Area (SqFt)</th>
+              <th>Bedrooms</th>
+              <th>Bathrooms</th>
+              <th>Stories</th>
+              <th>Age (Yrs)</th>
+              <th>Garage</th>
+              <th>Neighborhood</th>
+              <th>Furnishing</th>
+              <th>Pool</th>
+              <th>Price ($)</th>
+            </tr>
+          </thead>
+          <tbody id="dataset-sample-rows">
+            <!-- Dynamically populated by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- REST API Documentation Section -->
+    <section id="api" class="section">
+      <h2 class="section-title"><i class="fa-solid fa-code text-cyan"></i> REST API Integration Guide</h2>
+      <p class="section-desc">Incorporate real-time house valuation into Python services or web applications via FastAPI endpoint.</p>
+
+      <div class="card">
+        <h3 style="font-size: 16px; margin-bottom: 8px;">POST /predict Endpoint Example</h3>
+        <p style="font-size: 13px; color: var(--text-secondary);">Send JSON property features payload to receive instant valuation and confidence intervals.</p>
+        
+        <div class="code-block">
+<pre>curl -X 'POST' \
+  'http://localhost:8000/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "Area_SqFt": 2250,
+    "Bedrooms": 3,
+    "Bathrooms": 2,
+    "Stories": 2,
+    "House_Age_Years": 8,
+    "Garage_Cars": 2,
+    "Neighborhood": "Suburbs",
+    "Furnishing": "Semi-Furnished",
+    "Has_Pool": "No"
+  }'</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>House Price Prediction Machine Learning System | Avinash Kumar Pal</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

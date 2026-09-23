@@ -1,0 +1,89 @@
+{
+  "best_model": "lasso",
+  "feature_columns": [
+    "Area_SqFt",
+    "Bedrooms",
+    "Bathrooms",
+    "Stories",
+    "House_Age_Years",
+    "Garage_Cars",
+    "SqFt_per_Bedroom",
+    "Bath_Bed_Ratio",
+    "Luxury_Score",
+    "Neighborhood_Highland",
+    "Neighborhood_Oldtown",
+    "Neighborhood_Suburbs",
+    "Neighborhood_Waterfront",
+    "Furnishing_Semi-Furnished",
+    "Furnishing_Unfurnished",
+    "Has_Pool_Yes"
+  ],
+  "imputation_values": {
+    "Area_SqFt": 2023.5,
+    "House_Age_Years": 23.0
+  },
+  "test_metrics": {
+    "mse": 805952786.81,
+    "rmse": 28389.31,
+    "mae": 22049.71,
+    "r2": 0.8871,
+    "adj_r2": 0.8832,
+    "mape": 4.63
+  },
+  "residuals_info": {
+    "mean_residual": 2685.72,
+    "std_residual": 28261.98,
+    "max_positive_error": 139494.21,
+    "max_negative_error": -87071.59
+  },
+  "all_metrics": {
+    "linear": {
+      "mse": 807224994.05,
+      "rmse": 28411.71,
+      "mae": 22027.0,
+      "r2": 0.8869,
+      "adj_r2": 0.883,
+      "mape": 4.63
+    },
+    "ridge": {
+      "mse": 808384236.47,
+      "rmse": 28432.1,
+      "mae": 22080.81,
+      "r2": 0.8867,
+      "adj_r2": 0.8828,
+      "mape": 4.64
+    },
+    "lasso": {
+      "mse": 805952786.81,
+      "rmse": 28389.31,
+      "mae": 22049.71,
+      "r2": 0.8871,
+      "adj_r2": 0.8832,
+      "mape": 4.63
+    },
+    "elasticnet": {
+      "mse": 1402063779.57,
+      "rmse": 37444.14,
+      "mae": 29526.85,
+      "r2": 0.8036,
+      "adj_r2": 0.7968,
+      "mape": 6.14
+    },
+    "random_forest": {
+      "mse": 1389463423.21,
+      "rmse": 37275.51,
+      "mae": 29059.48,
+      "r2": 0.8053,
+      "adj_r2": 0.7986,
+      "mape": 6.0
+    },
+    "gradient_boosting": {
+      "mse": 1096113225.94,
+      "rmse": 33107.6,
+      "mae": 25903.14,
+      "r2": 0.8464,
+      "adj_r2": 0.8411,
+      "mape": 5.43
+    }
+  }
+}

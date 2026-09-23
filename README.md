@@ -10,24 +10,6 @@ Predicting housing market valuation is a foundational problem in predictive real
 
 It features automated missing value imputation, domain feature engineering (`SqFt_per_Bedroom`, `Bath_Bed_Ratio`, `Luxury_Score`), regularized linear and ensemble tree model benchmarks (`LinearRegression`, `Ridge`, `Lasso`, `ElasticNet`, `RandomForestRegressor`, `GradientBoostingRegressor`), automated CLI tools (`train.py`, `predict.py`), FastAPI REST server backend (`app_api.py`), unit tests (`pytest`), and a modern **Glassmorphism Interactive Web Dashboard**.
 
----
-
-## 📊 Feature Checklist & Implementation
-
-| Feature Area | Implementation Details | Status |
-| :--- | :--- | :---: |
-| **EDA & Cleaning** | Inspected 1,500 property records, imputed missing values (`Area_SqFt`, `Age`) | ✅ Complete |
-| **Feature Engineering** | Created `SqFt_per_Bedroom`, `Bath_Bed_Ratio`, `Luxury_Score`, and `Neighborhood` dummies | ✅ Complete |
-| **Categorical Encoding** | One-Hot Encoded `Neighborhood`, `Furnishing`, and `Has_Pool` categories | ✅ Complete |
-| **Correlation Analysis** | Triangular seaborn correlation matrix identifying top price drivers | ✅ Complete |
-| **Train/Test Split** | 80/20 train/test split preserving feature distribution | ✅ Complete |
-| **Multi-Model Benchmark** | Evaluated Linear, Ridge, Lasso, ElasticNet, Random Forest & Gradient Boosting | ✅ Complete |
-| **Metrics Evaluation** | Computed Test $R^2 \ge 0.8871$, RMSE ($28,389), MAE ($22,049), MAPE (4.63%) | ✅ Complete |
-| **Visual Diagnostics** | Actual vs Predicted scatter plots & residual homoscedasticity distributions | ✅ Complete |
-| **CLI Automation Tools** | `train.py` for pipeline export & `predict.py` for single/batch CLI inference | ✅ Complete |
-| **FastAPI REST Service** | Async API backend (`/predict`, `/health`, `/metrics`) | ✅ Complete |
-| **Unit Test Suite** | Automated `pytest` coverage for data, features, and model pipelines | ✅ Complete |
-| **Interactive Web App** | Modern Dark Glassmorphism Web App with live slider predictor | ✅ Complete |
 
 ---
 
